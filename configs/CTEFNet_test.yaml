@@ -1,0 +1,30 @@
+model:
+  name: "CTEFNet"
+  mode: "pretrain"
+  dim: 256
+  head: 4
+  depth: 6
+  dim_feedforward: 256
+  dropout: 0
+  load_pretrain: True
+data:
+  predictor: [ 'thetao_5', 'thetao_wmean', 'tauu', 'tauv', 'uo_5', 'vo_5', 'psl', 'mlotst', 'sos']
+  predictand: ['nino34']
+  valid_models: [ 'GODAS' ]
+  valid_period: [ 1980, 2021 ]
+  image_size: [ 120, 180 ]
+  input_region: [ 0, 120, 0, 180 ]
+  target_region: [ 54, 64, 95, 120 ]
+  obs_time: 12
+  pred_type: 'series'  # 'series'
+  pred_time: 24
+  train_batch_size: 8 # 16
+  valid_batch_size: 32
+  
+
+summary:
+  summary_dir: "./summary/checkpoints"
+  stage: 2
+  print_freq: 20 # 10
+  eval_freq: 100 # 500
+  
